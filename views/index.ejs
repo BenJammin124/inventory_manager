@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', {links: links}) %>
+    <main>
+      <%- include('partials/topbar', {date: date}) %>
+      <div class="dashboard-flex">
+        <a href="/products" class="total">
+          <div class="dashboard-box">
+            <p>Total Products in inventory:</p>
+            <p><%= totalProducts %></p>
+          </div>
+        </a>
+        <a href="/low-inventory" class="low">
+          <div class="dashboard-box">
+            <p>Products low in inventory:</p>
+            <p><%= lowProducts %></p>
+          </div>
+        </a>
+        <a href="/suppliers" class="suppliers">
+          <div class="dashboard-box">
+            <p>Total Suppliers:</p>
+            <p><%= suppliers %></p>
+          </div>
+        </a>
+      </div>
+      <div class="recently-added-wrapper">
+        <h2 class="recent-title">Recently Added:</h2>
+        <%- include('./partials/productsDisplay') %>
+      </div>
+    </main>
+  </body>
+</html>

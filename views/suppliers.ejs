@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', {links: links}) %>
+    <main>
+      <%- include('partials/topbar', {date: date}) %>
+      <div>
+        <h1 class="page-header">Suppliers</h1>
+        <a href="/suppliers/supplier/add" class="add-button margin-left"
+          >Add Supplier</a
+        >
+
+        <div class="product-cards">
+          <% suppliers.forEach(supplier => { %>
+          <div
+            class="product-card"
+            id="<%= supplier.supplier_id %>"
+            onclick="location.href='/suppliers/supplier/edit/<%= supplier.supplier_id %>'"
+          >
+            <img
+              src="<%= supplier.image_url %>"
+              alt="<%= supplier.supplier_name %>"
+              class="product-image"
+            />
+            <div class="product-info">
+              <h2 class="product-name"><%= supplier.supplier_name %></h2>
+              <p><strong>Phone number:</strong> <%= supplier.phone %></p>
+              <p><strong>Email:</strong> <%= supplier.email %></p>
+              <p><strong>Number of products:</strong> <%= supplier.count %></p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

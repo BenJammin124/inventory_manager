@@ -1,0 +1,49 @@
+<!-- products.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', {links: links}) %>
+    <main>
+      <%- include('partials/topbar', {date: date}) %>
+      <div>
+        <h1 class="page-header">Products</h1>
+        <%- include("errors") %>
+        <a href="/products/product/add" class="add-button margin-left"
+          >Add Product</a
+        >
+
+        <div class="product-cards">
+          <% products.forEach(product => { %>
+          <div
+            class="product-card"
+            id="<%= product.id %>"
+            onclick="location.href='/products/product/edit/<%= product.id %>'"
+          >
+            <img
+              src="<%= product.image_url %>"
+              alt="<%= product.product_name %>"
+              class="product-image"
+            />
+            <div class="product-info">
+              <h2 class="product-name"><%= product.product_name %></h2>
+              <p><strong>Category:</strong> <%= product.category_name %></p>
+              <p><strong>Supplier:</strong> <%= product.supplier_name %></p>
+              <p>
+                <strong>Price:</strong> $<%= product.price %> <%= product.unit
+                %>
+              </p>
+              <p><strong>Quantity:</strong> <%= product.quantity %></p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

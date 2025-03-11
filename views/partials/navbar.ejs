@@ -1,0 +1,14 @@
+<nav>
+  <div>
+    <h1 class="brand-name"><a href="/">StockSavor</a></h1>
+  </div>
+  <ul class="nav-links">
+    <% for (let i = 0; i < links.length; i++) { %>
+    <li>
+      <a href="<%= links[i].href %>">
+        <span> <%= links[i].text %> </span>
+      </a>
+    </li>
+    <% } %>
+  </ul>
+</nav>

@@ -1,0 +1,20 @@
+<% if (locals.products) { %>
+<div class="cards-container">
+  <ul class="product-list">
+    <% products.forEach(product => { %>
+    <li>
+      <a href="/products/product/edit/<%= product.id %>">
+        <div class="product-card small">
+          <img
+            src="<%= product.image_url %>"
+            alt="product.product_name"
+            class="image-small-card"
+          />
+          <p><%= product.product_name %></p>
+        </div>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+</div>
+<% } %>

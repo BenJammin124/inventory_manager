@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar', {links: links}) %>
+    <div>
+      <%- include('../partials/topbar', {date: date}) %>
+      <h1 class="page-header">Add New Product</h1>
+      <form action="/products/product/add" method="post" class="product-form">
+        <label for="productName">Product Name:</label>
+        <input type="text" id="productName" name="productName" required />
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required />
+        <label for="price">Price:</label>
+        <input type="number" step="0.01" id="price" name="price" required />
+        <label for="unit">Unit (1 lb, 12oz, 4L, etc...):</label>
+        <input type="text" id="unit" name="unit" required />
+        <label for="supplier">Supplier:</label>
+        <select id="supplier" name="supplier">
+          <% suppliers.forEach(function(supplier) { %>
+          <option value="<%= supplier.id %>">
+            <%= supplier.supplier_name %>
+          </option>
+          <% }); %>
+        </select>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <% categories.forEach(function(category) { %>
+          <option value="<%= category.id %>">
+            <%= category.category_name %>
+          </option>
+          <% }); %>
+        </select>
+        <label for="imageUrl">Image URL (optional):</label>
+        <input type="url" id="imageUrl" name="imageUrl" />
+        <button type="submit" class="add-button">Add Product</button>
+      </form>
+      <a href="/products" class="back-btn">Back</a>
+    </div>
+  </body>
+</html>

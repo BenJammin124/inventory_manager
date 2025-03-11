@@ -1,0 +1,88 @@
+<!-- views/product/edit -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><% title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar', {links: links}) %>
+    <div>
+      <%- include('../partials/topbar', {date: date}) %>
+      <h1 class="page-header">Edit Product</h1>
+      <form action="/products/product/editConfirm" method="post">
+        <input type="hidden" name="productId" value="<%= product.id %>">
+        <label for="productName">Product Name:</label>
+        <input
+          type="text"
+          id="productName"
+          name="productName"
+          value="<%= product.product_name %>"
+          required
+        />
+        <label for="quantity">Quantity:</label>
+        <input
+          type="number"
+          id="quantity"
+          name="quantity"
+          value="<%= product.quantity %>"
+          required
+        />
+        <label for="price">Price:</label>
+        <input
+          type="number"
+          step="0.01"
+          id="price"
+          name="price"
+          value="<%= product.price %>"
+          required
+        />
+        <label for="unit">Unit (lb, oz, L, etc...):</label>
+        <input
+          type="text"
+          id="unit"
+          name="unit"
+          value="<%= product.unit %>"
+          required
+        />
+        <label for="supplier">Supplier:</label>
+        <select
+          id="supplier"
+          name="supplier"
+        >
+        <% suppliers.forEach(function(supplier) { %>
+          <option value="<%= supplier.id %>" 
+            <%= product.supplier_name === supplier.supplier_name ? 'selected' : '' %>>
+            <%= supplier.supplier_name %>
+          </option>
+        <% }); %>
+        </select>
+        <label for="category">Category:</label>
+        <select id="category" name="category">
+          <% categories.forEach(function(category) { %>
+            <option value="<%= category.id %>" 
+              <%= product.category_name === category.category_name ? 'selected' : '' %>>
+              <%= category.category_name %>
+            </option>
+          <% }); %>
+        </select>
+
+        <label for="imageUrl">Image URL (optional):</label>
+        <input
+          type="url"
+          id="imageUrl"
+          name="imageUrl"
+          value="<%= product.image_url %>"
+        />
+        <button type="submit" class="add-button">Confirm</button>
+        
+      </form>
+      <form action="/products/delete/<%= product.id %>" method="POST">
+       <button type="submit"  onclick="return confirm('Are you sure you want to delete this product?');">Delete</button>
+      </form>
+      <a href="/products" class="back-btn">Back</a>
+    </div>
+  </body>
+</html>

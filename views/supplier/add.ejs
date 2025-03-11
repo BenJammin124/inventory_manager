@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('../partials/navbar', {links: links}) %>
+    <div>
+      <%- include('../partials/topbar', {date: date}) %>
+      <h1 class="page-header">Add New Supplier</h1>
+
+      <form action="/suppliers/supplier/add" method="post" class="product-form">
+        <label for="supplierName">Supplier Name:</label>
+        <input
+          type="text"
+          id="supplierName"
+          name="supplierName"
+          value="<%= supplierName %>"
+          required
+        />
+
+        <label for="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value="<%= supplierEmail %>"
+        />
+
+        <label for="phone">Telephone Number:</label>
+        <span class="phone-example" aria-label="Phone Number"
+          >Example: 123-456-7890</span
+        >
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          placeholder="___-___-____"
+          pattern="\d{3}-\d{3}-\d{4}"
+          inputmode="numeric"
+          value="<%= supplierPhone %>"
+        />
+
+        <label for="imageUrl">Image URL (optional):</label>
+        <input
+          type="url"
+          id="imageUrl"
+          name="imageUrl"
+          value="<%= imageUrl %>"
+        />
+        <button type="submit" class="add-button">Add Category</button>
+      </form>
+      <a href="/suppliers" class="back-btn">Back</a>
+    </div>
+  </body>
+</html>

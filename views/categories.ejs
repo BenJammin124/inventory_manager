@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <%- include('partials/navbar', {links: links}) %>
+    <main>
+      <%- include('partials/topbar', {date: date}) %>
+      <div>
+        <h1 class="page-header">Categories</h1>
+        <a href="/categories/category/add" class="add-button margin-left"
+          >Add Category</a
+        >
+
+        <div class="product-cards">
+          <% categories.forEach(category => { %>
+          <div
+            class="product-card"
+            id="<%= category.id %>"
+            onclick="location.href='/categories/category/edit/<%= category.id %>'"
+          >
+            <img
+              src="<%= category.image_url %>"
+              alt="<%= category.category_name %>"
+              class="product-image"
+            />
+            <div class="product-info">
+              <h2 class="product-name"><%= category.category_name %></h2>
+
+              <p><strong>Quantity:</strong> <%= category.count %></p>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
