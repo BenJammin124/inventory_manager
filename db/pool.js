@@ -1,11 +1,11 @@
 const { Pool } = require("pg");
 require("dotenv").config();
 
-const ROLE_NAME = process.env.ROLE_NAME;
-const HOST = process.env.HOST;
-const DB = process.env.DB;
-const ROLE_PASSWORD = process.env.ROLE_PASSWORD;
+const DATABASE_URL = process.env.DATABASE_URL;
 
 module.exports = new Pool({
-  connectionString: `postgresql://${ROLE_NAME}:${ROLE_PASSWORD}@${HOST}:5432/${DB}`,
+  connectionString: DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
