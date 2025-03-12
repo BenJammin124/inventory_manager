@@ -7,6 +7,10 @@ const { suppliersRouter } = require("./routes/suppliersRouter");
 const { productsRouter } = require("./routes/productsRouter");
 const path = require("node:path");
 
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
+
 app.set("view engine", "ejs");
 
 const assetsPath = path.join(__dirname, "public");
