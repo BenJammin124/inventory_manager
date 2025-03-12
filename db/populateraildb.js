@@ -1,11 +1,12 @@
 require("dotenv").config();
 const { Client } = require("pg");
 
-const PGHOST = process.env.PGHOST;
+const DATABASE_HOST = process.env.DATABASE_HOST;
+const DATABASE_USER = process.env.DATABASE_USER;
+const DATABASE_PASSWORD = process.env.DATABASE_PASSWORD;
+const DATABASE_NAME = process.env.DATABASE_NAME;
 const PGPORT = process.env.PGPORT || 5432;
-const PGDATABASE = process.env.PGDATABASE;
-const PGUSER = process.env.PGUSER;
-const PGPASSWORD = process.env.PGPASSWORD;
+
 const DATABASE_URL = process.env.DATABASE_URL;
 
 const SQL = `
